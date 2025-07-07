@@ -33,7 +33,13 @@ public class demoqa {
         $("#userNumber").setValue(phoneNumber);
         $("#gender-radio-1").parent().click(); //good method
         //$("#genterWrapper").$(byText("Other")).click();
-        $("#dateOfBirthInput").setValue(birthday);
+        //$("#dateOfBirthInput").setValue(birthday);
+        //Работа с Select and Option Выпадашка
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("July");
+        $(".react-datepicker__year-select").selectOption("1997");
+        $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
+
 
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
