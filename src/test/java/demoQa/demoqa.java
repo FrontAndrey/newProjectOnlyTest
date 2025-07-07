@@ -31,7 +31,8 @@ public class demoqa {
         $("#lastName").setValue(lastNameUser);
         $("#userEmail").setValue(mail);
         $("#userNumber").setValue(phoneNumber);
-        $("#genterWrapper").$(byText("Other")).click();
+        $("#gender-radio-1").parent().click(); //good method
+        //$("#genterWrapper").$(byText("Other")).click();
         $("#dateOfBirthInput").setValue(birthday);
 
         executeJavaScript("$('#fixedban').remove()");
