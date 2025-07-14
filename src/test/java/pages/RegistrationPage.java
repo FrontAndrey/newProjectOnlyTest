@@ -2,18 +2,21 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.RegistrationResultModal;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
+    RegistrationResultModal registrationResultModal = new RegistrationResultModal();
     //переменные для элементов, которые могут повторяться
     private SelenideElement lastNameInput = $("#lastName"),
                             firsNameInput = $("#firstName"),
                             emailInput = $("#userEmail"),
                             numberInput = $("#userNumber"),
-                            genderRadioButton = $("#genterWrapper");
+                            genderRadioButton = $("#genterWrapper"),
+                            dateOFBirthdayInput = $("#dateOfBirthInput");
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
@@ -60,8 +63,19 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage setBirthday(String day, String month, String year) {
-        $("#dateOfBirthInput").click();
+        dateOFBirthdayInput.click();
         calendarComponent.setDate(day,month,year);
+        return this;
+    }
+
+    public RegistrationPage verifyResultModalAppears() {
+        registrationResultModal.verifyModalAppears();
+
+        return this;
+    }
+
+    public RegistrationPage verifyResult(String key, String value) {
+        registrationResultModal.verifyResult(key, value);
         return this;
     }
 }

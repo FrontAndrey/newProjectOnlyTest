@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -28,11 +29,15 @@ public class demoqaPageObjects extends TestBase {
         //$("#gender-radio-1").parent().click()//good method
         //$("#dateOfBirthInput").setValue(birthday);
         //Работа с Select and Option Выпадашка
-
-
-
         $(".btn-primary").click();
-        $(".table-responsive").shouldHave(text(nameUser),text(lastNameUser),text(mail));
+
+        registrationPage.verifyResultModalAppears()
+                        .verifyResult("Student Name", nameUser + lastNameUser)
+                        .verifyResult("Student Email", mail)
+                        .verifyResult("Mobile", phoneNumber)
+                        .verifyResult("Gender", "Other")
+                        .verifyResult("Date of Birth", "30 July,2025");
+
         sleep(3000);
 
     }
