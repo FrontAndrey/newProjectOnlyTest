@@ -8,15 +8,19 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+
     CalendarComponent calendarComponent = new CalendarComponent();
     RegistrationResultModal registrationResultModal = new RegistrationResultModal();
+
     //переменные для элементов, которые могут повторяться
     private SelenideElement lastNameInput = $("#lastName"),
                             firsNameInput = $("#firstName"),
                             emailInput = $("#userEmail"),
                             numberInput = $("#userNumber"),
                             genderRadioButton = $("#genterWrapper"),
-                            dateOFBirthdayInput = $("#dateOfBirthInput");
+                            dateOFBirthdayInput = $("#dateOfBirthInput"),
+                            clickSubmit = $(".btn-primary");
+
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
@@ -34,7 +38,7 @@ public class RegistrationPage {
 
     //Второй способ, когда данные зашиты в SetValue, плохой способ
     public RegistrationPage setLastName() {
-        lastNameInput.setValue("value");
+        lastNameInput.setValue("Bonita");
 
         return this;
     }
@@ -65,6 +69,11 @@ public class RegistrationPage {
     public RegistrationPage setBirthday(String day, String month, String year) {
         dateOFBirthdayInput.click();
         calendarComponent.setDate(day,month,year);
+        return this;
+    }
+
+    public RegistrationPage clickBtn() {
+        clickSubmit.click();
         return this;
     }
 

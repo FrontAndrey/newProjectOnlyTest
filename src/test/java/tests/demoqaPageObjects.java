@@ -15,9 +15,7 @@ public class demoqaPageObjects extends TestBase {
         String nameUser = "Andrew";
         String lastNameUser = "Bonita";
         String mail = "andrew.bonita@mail.ru";
-        //String birthday = "12.12.1997";
-        String phoneNumber = "89999999999";
-        String currentAddress = "bububu";
+        String phoneNumber = "8999999999";
 
         registrationPage.openPage()
                 .setFirstName(nameUser)
@@ -25,18 +23,14 @@ public class demoqaPageObjects extends TestBase {
                 .setEmail(mail)
                 .setNumber(phoneNumber)
                 .setGender("Other")
-                .setBirthday("30", "July", "1997");
-        //$("#gender-radio-1").parent().click()//good method
-        //$("#dateOfBirthInput").setValue(birthday);
-        //Работа с Select and Option Выпадашка
-        $(".btn-primary").click();
-
-        registrationPage.verifyResultModalAppears()
-                        .verifyResult("Student Name", nameUser + lastNameUser)
-                        .verifyResult("Student Email", mail)
-                        .verifyResult("Mobile", phoneNumber)
-                        .verifyResult("Gender", "Other")
-                        .verifyResult("Date of Birth", "30 July,2025");
+                .setBirthday("30", "July", "1997")
+                .clickBtn()
+                .verifyResultModalAppears()
+                .verifyResult("Student Name", nameUser + " " + lastNameUser)
+                .verifyResult("Student Email", mail)
+                .verifyResult("Mobile", phoneNumber)
+                .verifyResult("Gender", "Other")
+                .verifyResult("Date of Birth", "30 July,1997");
 
         sleep(3000);
 
