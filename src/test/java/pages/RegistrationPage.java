@@ -6,6 +6,8 @@ import pages.components.RegistrationResultModal;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static utils.RandomUtils.getRandomEmail;
+import static utils.RandomUtils.getRandomString;
 
 public class RegistrationPage {
 
@@ -37,8 +39,8 @@ public class RegistrationPage {
     }
 
     //Второй способ, когда данные зашиты в SetValue, плохой способ
-    public RegistrationPage setLastName() {
-        lastNameInput.setValue("Bonita");
+    public RegistrationPage setLastName(String value) {
+        lastNameInput.setValue(value); //если убрать из скобок стринг с вэлью и в сет вэлью добавить хардкод
 
         return this;
     }
